@@ -30,3 +30,4 @@ jobs:
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
       - name: Deploy to staging
         if: github.event_name == 'push'
+        run: npx surge --project ./build --domain https://bloody-fifth.surge.sh
