@@ -1,4 +1,4 @@
 * @GologicGClaudel
-*.js
-*.yml
+*.js @GologicGClaudel
+*.yml @GologicGClaudel
 /public/ @GologicGClaudel
