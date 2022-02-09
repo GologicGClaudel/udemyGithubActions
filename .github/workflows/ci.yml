@@ -3,11 +3,11 @@ on:
   pull_request:
     branches:
       - develop
-      - main
+      - main22
   push:
     branches:
       - develop
-      - main
+      - main22
 
 jobs:
   build:
