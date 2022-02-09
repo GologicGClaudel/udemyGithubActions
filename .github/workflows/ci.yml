@@ -3,31 +3,72 @@ on:
   pull_request:
     branches:
       - develop
+      - main
   push:
     branches:
       - develop
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-18.04
+    env:
+      SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+      SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
     steps:
       - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: Use NodeJs
         uses: actions/setup-node@v1
         with:
           node-version: "14.x"
-      - run: npm install
       - run: npm ci
       - run: npm run format:check
       - run: npm test -- --coverage
         env:
           CI: true
+      - name: Upload test coverage
+        uses: actions/upload-artifact@v1
+        with:
+          path: coverage
+          name: coverage
       - name: Build project
         if: github.event_name == 'push'
         run: npm run build
-        env:
-          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
-          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
-      - name: Deploy to staging
+      - name: Upload build file
         if: github.event_name == 'push'
+        uses: actions/upload-artifact@v1
+        with:
+          path: build
+          name: build
+      - name: ZIP assets
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          zip -r build.zip ./build
+          zip -r coverage.zip ./coverage
+      - uses: actions/download-artifact@v1
+        with:
+          name: coverage
+          path: coverage
+      - name: Create a release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy to staging
+        if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
         run: npx surge --project ./build --domain https://bloody-fifth.surge.sh
+      - name: Deploy to Production
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: npx surge --project ./build --domain https://bloody-fifth-prod.surge.sh
+      - name: Upload coverage report
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: npx codecov
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
