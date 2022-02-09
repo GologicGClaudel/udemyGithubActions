@@ -16,8 +16,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format:check" : "prettier --check \"src/*.{js,jsx,yml,yaml,json,css,scss,md}\"",
-    "format" : "prettier --write \"src/*.{js,jsx,yml,yaml,json,css,scss,md}\""
+    "format:check": "prettier --check \"src/*.{js,jsx,yml,yaml,json,css,scss,md}\"",
+    "format": "prettier --write \"src/*.{js,jsx,yml,yaml,json,css,scss,md}\""
   },
   "eslintConfig": {
     "extends": [
@@ -38,6 +38,7 @@
     ]
   },
   "devDependencies": {
-    "prettier": "2.5.1"
+    "prettier": "2.5.1",
+    "semantic-release": "^19.0.2"
   }
 }
