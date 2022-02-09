@@ -46,6 +46,8 @@ jobs:
           path: build
           name: build
       - uses: actions/download-artifact@v1
+        with:
+          path: coverage
       - name: Deploy to staging
         if: github.event_name == 'push'
         run: npx surge --project ./build --domain https://bloody-fifth.surge.sh
