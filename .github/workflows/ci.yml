@@ -47,6 +47,7 @@ jobs:
           name: build
       - uses: actions/download-artifact@v1
         with:
+          name: coverage
           path: coverage
       - name: Deploy to staging
         if: github.event_name == 'push'
