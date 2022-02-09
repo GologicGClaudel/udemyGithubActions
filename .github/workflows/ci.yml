@@ -28,12 +28,23 @@ jobs:
       - run: npm test -- --coverage
         env:
           CI: true
+      - name: Upload test coverage
+        uses: actions/upload-artifact@v1
+        with:
+          path: coverage
+          name: coverage
       - name: Build project
         if: github.event_name == 'push'
         run: npm run build
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+      - name: Upload build file
+        uses: actions/upload-artifact@v1
+        with:
+          path: build
+          name: build
+      - uses: actions/download-artifact@v1
       - name: Deploy to staging
         if: github.event_name == 'push'
         run: npx surge --project ./build --domain https://bloody-fifth.surge.sh
