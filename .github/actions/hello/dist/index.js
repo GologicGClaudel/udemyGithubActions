@@ -882,14 +882,26 @@ const github = __webpack_require__(469);
 
 try
 {
-    throw(new Error("Some error msg"));
+//    throw(new Error("Some error msg"));
+
+    core.debug('Debug message')
+    core.warning('Warning message')
+    core.error('Error message')
+
+    core.setSecret(name);
+
     const name = core.getInput('who-to-greet')
     console.log(`Hello ${name}`)
 
     const time = new Date();
     core.setOutput("time", time.toTimeString());
 
+    core.startGroup('Logging github object');
     console.log(JSON.stringify(github, null, '\t'))
+    core.endGroup();
+
+    core.exportVariable('HELLO', 'hello');
+
 } catch(error) {
     core.setFailed(error.message)
 }
