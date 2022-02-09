@@ -5,13 +5,15 @@ try
 {
 //    throw(new Error("Some error msg"));
 
+    const name = core.getInput('who-to-greet')
+
+
     core.debug('Debug message')
     core.warning('Warning message')
     core.error('Error message')
 
     core.setSecret(name);
 
-    const name = core.getInput('who-to-greet')
     console.log(`Hello ${name}`)
 
     const time = new Date();
