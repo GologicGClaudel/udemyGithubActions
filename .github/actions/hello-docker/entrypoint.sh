@@ -1,10 +1,10 @@
 #!/bin/sh -l
 
-if [ true ]
-then
-  echo "error"
-  exit 1
-fi
+#if [ true ]
+#then
+#  echo "error"
+#  exit 1
+#fi
 
 
 echo "::debug ::Debug Message"
@@ -22,4 +22,4 @@ echo "Some stuff"
 echo "Some stuff"
 echo "::endgroup::"
 
-echo "::set-env name=HELLO::hello"
+echo "HELLO=hello" >> $GITHUB_ENV
