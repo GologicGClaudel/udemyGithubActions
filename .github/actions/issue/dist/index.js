@@ -4318,8 +4318,6 @@ async function run() {
           assignees: assignees ? assignees.split('\n') : undefined,
         });
 
-        core.debug(response);
-
         core.setOutput("issue", JSON.stringify(response.data));
 
     } catch (error) {
