@@ -20,3 +20,4 @@ jobs:
           version: Release9382
           rpm-artifact-name: cfmapperCIBC-${{ env.RPM_VERSION_MAJOR }}.${{ env.RPM_VERSION_MINOR }}-9382.x86_64.rpm
           devarch-user: livraison
+          create_rpm: false
