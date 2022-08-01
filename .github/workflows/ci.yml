@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/workflows/my_action.yml
+      - uses: ./.github/workflows/
         with:
           project-name: ${{ env.RPM_VERSION_MAJOR }}/${{ env.RPM_VERSION_MINOR }}/Installers/linux/
           version: Release9382
