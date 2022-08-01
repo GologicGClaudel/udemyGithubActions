@@ -1,5 +1,7 @@
 name: 'Publish RPM to devarch'
 
+on: workflow_dispatch
+
 description: >
   Publish RPM to devarch using SFTP protocol. 
   This action must be run on builddocker to be functional.
