@@ -13,7 +13,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: my_action.yml
+      - uses: .github/workflows/my_action.yml
         with:
           project-name: ${{ env.RPM_VERSION_MAJOR }}/${{ env.RPM_VERSION_MINOR }}/Installers/linux/
           version: Release9382
