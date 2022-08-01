@@ -67,5 +67,5 @@ runs:
       # builddocker MUST have the credentials to connect to ${{ inputs.devarch-user }}@devarch
       # Assume that the folder /data/archives/${{ inputs.project-name }} already exist
       # The upload will fail otherwise
-      run: echo sftp-command.txt
+      run: cat sftp-command.txt
       shell: bash
