@@ -41,11 +41,6 @@ runs:
   using: composite
 
   steps:
-    - name: Download RPM
-      uses: actions/download-artifact@v2
-      with:
-        name: ${{ inputs.rpm-artifact-name }}
-        path: new-rpm
 
     - name: Generate SFTP commands
       # Generate the commands to be executed on SFTP
