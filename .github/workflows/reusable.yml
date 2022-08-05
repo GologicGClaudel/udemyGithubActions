@@ -1,5 +1,10 @@
 on:
   workflow_call:
+    inputs:
+      oui:
+        type: string
+        required: true
+        description: oui
 
 jobs:
   upload-rpm-to-devarch:
@@ -8,4 +13,4 @@ jobs:
     steps:
 
       - name: Print the value
-        run: echo " >>>> ${{ needs.build.outputs.oui }}"
+        run: echo " >>>> ${{ inputs.oui }}"

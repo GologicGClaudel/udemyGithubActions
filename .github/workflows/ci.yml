@@ -22,5 +22,7 @@ jobs:
 
   other:
     uses: ./.github/workflows/reusable.yml
+    with:
+      oui: ${{ needs.build.outputs.oui }}
     name: Reuse
     needs: [ build ] 
