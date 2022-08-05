@@ -12,12 +12,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      git_version_major: ${{ steps.set-out.outputs.oui }}
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/workflows/
-        with:
-          project-name: ${{ env.RPM_VERSION_MAJOR }}/${{ env.RPM_VERSION_MINOR }}/Installers/linux/
-          version: Release9382
-          rpm-artifact-name: cfmapperCIBC-${{ env.RPM_VERSION_MAJOR }}.${{ env.RPM_VERSION_MINOR }}-9382.x86_64.rpm
-          devarch-user: livraison
-          create_rpm: false
+      - name: set out
+        id: set-out
+        run: echo "::set-output name=oui::lavaleur"
+
+  other:
+    uses: ./.github/workflows/reusable.yml
+    name: Reuse
+    needs: [ build ] 

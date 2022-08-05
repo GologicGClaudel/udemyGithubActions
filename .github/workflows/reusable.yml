@@ -1,0 +1,11 @@
+on:
+  workflow_call:
+
+jobs:
+  upload-rpm-to-devarch:
+    name: Upload a RPM to devarch
+    runs-on: [ ubuntu-latest ]
+    steps:
+
+      - name: Print the value
+        run: echo " >>>> ${{ needs.build.outputs.oui }}"
