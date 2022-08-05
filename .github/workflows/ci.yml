@@ -13,7 +13,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      git_version_major: ${{ steps.set-out.outputs.oui }}
+      oui: ${{ steps.set-out.outputs.oui }}
     steps:
       - uses: actions/checkout@v3
       - name: set out

@@ -13,4 +13,6 @@ jobs:
     steps:
 
       - name: Print the value
-        run: echo " >>>> ${{ inputs.oui }}"
+        run: |
+          echo " >>>> ${{ inputs.oui }}"
+          echo " >>>> ${{ needs.build.outputs.oui }}"
