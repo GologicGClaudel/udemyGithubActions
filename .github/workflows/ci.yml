@@ -5,20 +5,29 @@ on:
       - develop
       - main
   push:
-    branches:
-      - develop
-      - main
+
+env:
+ BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    outputs:
-      oui: ${{ steps.set-out.outputs.oui }}
+    # outputs:
+      # oui: ${{ steps.set-out.outputs.oui }}
     steps:
       - uses: actions/checkout@v3
-      - name: set out
-        id: set-out
-        run: echo "::set-output name=oui::lavaleur"
+
+      - name: print ref
+        run: echo "github.ref = ${{ github.ref }}"
+
+      - name: print head_ref
+        run: echo "github.head_ref = ${{ github.head_ref }}"
+
+      - name: print ref_name
+        run: echo "github.ref_name = ${{ github.ref_name }}"
+
+      - name: print ENV
+        run: echo "env.branch_name = ${{ env.BRANCH_NAME }}"
 
   other:
     uses: ./.github/workflows/reusable.yml
