@@ -5,6 +5,7 @@ on:
       - develop
       - main
   push:
+  workflow_dispatch:
 
 env:
  BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
@@ -29,9 +30,9 @@ jobs:
       - name: print ENV
         run: echo "env.branch_name = ${{ env.BRANCH_NAME }}"
 
-  other:
-    uses: ./.github/workflows/reusable.yml
-    with:
-      oui: ${{ needs.build.outputs.oui }}
-    name: Reuse
-    needs: [ build ] 
+  # other:
+  #   uses: ./.github/workflows/reusable.yml
+  #   with:
+  #     oui: ${{ needs.build.outputs.oui }}
+  #   name: Reuse
+  #   needs: [ build ] 
