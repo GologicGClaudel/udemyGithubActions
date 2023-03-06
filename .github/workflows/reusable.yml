@@ -16,3 +16,4 @@ jobs:
         run: |
           echo " >>>> ${{ inputs.oui }}"
           echo " >>>> ${{ needs.build.outputs.oui }}"
+          echo " >>>> ${{ github.event_name }}"
