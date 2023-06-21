@@ -1,20 +1,22 @@
 name: CI
+
 on:
   push:
-#    branches:
-#      - main
-#    paths:
-#      - installations
-
-env:
- BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
+    branches:
+      - main
+    paths:
+      - installations
 
 jobs:
-  build:
-    name: build
-    runs-on: ubuntu-latest
+  create-files:
+    name: Create Files
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
       - name: print ref
         run: git diff --name-only ${{ github.event.before }} ${{ github.event.after }}
