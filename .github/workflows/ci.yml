@@ -18,26 +18,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # outputs:
-      # oui: ${{ steps.set-out.outputs.oui }}
     steps:
       - uses: actions/checkout@v3
-
       - name: print ref
         run: git diff --name-only ${{ github.event.before }} ${{ github.event.after }}
-
-#       - name: print head_ref
-#         run: echo "github.head_ref = ${{ github.head_ref }}"
-
-#       - name: print ref_name
-#         run: echo "github.ref_name = ${{ github.ref_name }}"
-
-#       - name: print ENV
-#         run: echo "env.branch_name = ${{ env.BRANCH_NAME }}"
-
-#   other:
-#     uses: ./.github/workflows/reusable.yml
-#     with:
-#       oui: ${{ needs.build.outputs.oui }}
-#     name: Reuse
-#     needs: [ build ] 
