@@ -1,10 +1,10 @@
 name: CI
 on:
   push:
-    branches:
-      - main
-    paths:
-      - installations
+#    branches:
+#      - main
+#    paths:
+#      - installations
 
 env:
  BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
