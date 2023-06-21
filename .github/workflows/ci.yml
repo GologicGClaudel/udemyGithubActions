@@ -8,16 +8,16 @@ on:
       - installations
 
 jobs:
-  create-files:
-    name: Create Files
-    runs-on: ubuntu-22.04
-    steps:
+    create-files:
+      name: Create Files
+      runs-on: ubuntu-22.04
+      steps:
 
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-          fetch-depth: 0
+        - name: Checkout repository
+          uses: actions/checkout@v3
+          with:
+            persist-credentials: false
+            fetch-depth: 0
 
-      - name: print ref
-        run: git diff --name-only ${{ github.event.before }} ${{ github.event.after }}
+        - name: print ref
+          run: git diff --name-only ${{ github.event.before }} ${{ github.event.after }}
